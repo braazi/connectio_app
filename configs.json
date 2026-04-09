@@ -1,0 +1,14 @@
+{
+  "thingsboardApiEndpoint": "https://connectio.braazi.cloud",
+  "appLinksUrlHost": "connectio.braazi.cloud",
+  "appLinksUrlScheme": "https",
+  "registrationRedirectUrlScheme": "",
+  "registrationRedirectUrlHost": "",
+  "androidApplicationId": "com.braazi.connectio",
+  "androidApplicationName": "Connect IO",
+  "thingsboardOAuth2CallbackUrlScheme": "com.braazi.connectio.auth",
+  "thingsboardAndroidAppSecret": "M0NMdm4xVFBtN252UVFsV2hUTUhwWW1qMWJ1N2tWTHFwWFFUaUhRVFNVRVlwa0pJbVZDajBwM1IwajNvZGhaZQ==",
+  "iosApplicationId": "com.braazi.connectio",
+  "iosApplicationName": "Connect IO",
+  "thingsboardIosAppSecret": "ek5MbjFUaGM1NTN4ZW1VZmlrMGtzcE5aMVFMN0JrMUw5bk9Na0ZLVzd3N3M2ZlNXMnlzWTNkdG5rWUY3TFJhRw=="
+}
