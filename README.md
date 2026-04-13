@@ -1,12 +1,59 @@
-## [ThingsBoard PE Mobile Application](https://thingsboard.io/products/mobile-pe/) is an open-source project based on [Flutter](https://flutter.dev/)
-Powered by [ThingsBoard PE](https://thingsboard.io/products/thingsboard-pe/) IoT Platform
+# ConnectIO
 
-Build your own advanced IoT mobile application **with minimum coding efforts**
+ConnectIO is a powerful mobile platform for real-time monitoring, visualization, and control of connected devices and data streams. Built for scalability and flexibility, ConnectIO enables organizations to manage their infrastructure, automate workflows, and gain insights from their data — all from a single mobile interface.
 
-## Please be informed the Web platform is not supported, because it's a part of our main platform!
+---
 
-## Resources
+## 🚀 Features
 
-- [Getting started](https://thingsboard.io/docs/pe/mobile/getting-started/) - learn how to set up and run your first IoT mobile app
-- [Customize your app](https://thingsboard.io/docs/pe/mobile/customization/) - learn how to customize the app
-- [Publish your app](https://thingsboard.io/docs/pe/mobile/release/) - learn how to publish app to Google Play or App Store
+- 📊 **Real-time Dashboards**
+  - Visualize live data with customizable widgets
+  - Monitor key metrics and system performance
+
+- 🔐 **Secure Authentication**
+  - User-based access control
+  - Secure API communication
+
+- 📡 **Device Monitoring**
+  - Track status and telemetry of connected devices
+  - Receive updates instantly
+
+- ⚙️ **Remote Control**
+  - Send commands to devices
+  - Trigger actions and automations
+
+- 🔔 **Notifications**
+  - Stay informed with alerts and updates
+  - Configurable notification system
+
+- 🌐 **Multi-Environment Support**
+  - Connect to different servers/environments
+  - Easily switch between instances
+
+---
+
+## 📱 Screenshots
+
+> _(Add your app screenshots here for App Store / Play Store presentation)_
+
+---
+
+## 🛠️ Tech Stack
+
+- **Flutter** (Cross-platform mobile development)
+- **REST APIs** for backend communication
+- **Secure token-based authentication**
+
+---
+
+## 📦 Getting Started
+
+### Prerequisites
+
+- Flutter SDK installed  
+- Android Studio or VS Code  
+- Xcode (for iOS builds)  
+- A valid backend server endpoint  
+
+---
+
