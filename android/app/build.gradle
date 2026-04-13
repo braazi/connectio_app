@@ -37,14 +37,14 @@ if (flutterVersionName == null) {
 }
 def customScheme = getDartDefineValue('thingsboardOAuth2CallbackUrlScheme') ?: 'org.thingsboard.app.auth'
 def customLabel = getDartDefineValue('androidApplicationName') ?: 'ConnectIO app'
-def appLinksUrlHost = getDartDefineValue('appLinksUrlHost') ?: 'connection.braazi.cloud'
+def appLinksUrlHost = getDartDefineValue('appLinksUrlHost') ?: 'connectio.braazi.cloud'
 def webPathPrefix = getDartDefineValue('webPathPrefix') ?: '/api/noauth/qr'
 def appLinksUrlScheme = getDartDefineValue('appLinksUrlScheme') ?: 'https'
-def redirectURLHost = getDartDefineValue('registrationRedirectUrlHost') ?: 'connectio.braazi.com'
+def redirectURLHost = getDartDefineValue('registrationRedirectUrlHost') ?: 'connectio.braazi.cloud'
 def redirectURLScheme = getDartDefineValue('registrationRedirectUrlScheme') ?: 'tbscheme'
 
 android {
-namespace "com.braazi.connectio"
+namespace "cloud.braazi.connectio"
     ndkVersion "29.0.13113456 rc1"
     compileSdkVersion 35
 
@@ -53,7 +53,7 @@ namespace "com.braazi.connectio"
     }
    
     defaultConfig {
-        applicationId getDartDefineValue('androidApplicationId') ?: "com.braazi.connectio"
+        applicationId getDartDefineValue('androidApplicationId') ?: "cloud.braazi.connectio"
         minSdkVersion 24
         multiDexEnabled true
         targetSdkVersion 36
@@ -108,3 +108,4 @@ compileOptions {
 flutter {
     source '../..'
 }
+android.buildTypes.release.ndk.debugSymbolLevel = 'FULL'
