@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'connectio-notifications.firebasestorage.app',
     iosBundleId: 'cloud.braazi.connectio',
   );
+
 }
