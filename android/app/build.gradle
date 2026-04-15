@@ -56,7 +56,7 @@ namespace "cloud.braazi.connectio"
         applicationId getDartDefineValue('androidApplicationId') ?: "cloud.braazi.connectio"
         minSdkVersion 24
         multiDexEnabled true
-        targetSdkVersion 36
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         manifestPlaceholders = [
@@ -83,16 +83,16 @@ compileOptions {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
             // Custom proguard rules
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
         }
     }
 
     dependencies {
-        implementation 'androidx.browser:browser:1.0.0'
-        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
-        implementation 'androidx.window:window:1.0.0'
-        implementation 'androidx.window:window-java:1.0.0'
+        implementation 'androidx.browser:browser:1.10.0'
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+        implementation 'androidx.window:window:1.5.1'
+        implementation 'androidx.window:window-java:1.5.1'
     }
     android.applicationVariants.all { variant ->
     variant.outputs.all { output ->

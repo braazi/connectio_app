@@ -12,6 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:thingsboard_app/app_bloc_observer.dart';
 import 'package:thingsboard_app/constants/enviroment_variables.dart';
 import 'package:thingsboard_app/core/select_region/model/region.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:thingsboard_app/firebase_options.dart';
 import 'package:thingsboard_app/locator.dart';
 import 'package:thingsboard_app/thingsboard_app.dart';
@@ -22,6 +23,9 @@ import 'package:universal_platform/universal_platform.dart';
 Future<void> main() async {
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
+	  await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Hive.initFlutter();
  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);

@@ -1,4 +1,4 @@
-package org.thingsboard.pe.app
+package cloud.braazi.connectio
 
 import android.app.Service
 import android.content.Intent
