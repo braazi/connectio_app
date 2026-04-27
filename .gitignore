@@ -59,3 +59,4 @@ lib/firebase_options.dart
 ios/Runner/GoogleService-Info.plist
 configs.json
 assets/
+android/app/build.gradle
