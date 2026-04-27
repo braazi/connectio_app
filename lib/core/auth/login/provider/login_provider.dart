@@ -88,11 +88,27 @@ class Login extends _$Login {
 
     final userInfo = await _tbClient.getUserService().getUser();
     final lang = userInfo.additionalInfo?['lang'];
-    final locale = S.delegate.supportedLocales.firstWhereOrNull(
-      (l) => l.toString() == lang.toString().split('_')[0],
-    );
+    Locale? locale;
+    if (lang != null) {
+      final langStr = lang.toString().replaceAll('-', '_');
+      final parts = langStr.split('_');
+      if (parts.length > 1) {
+        locale = S.delegate.supportedLocales.firstWhereOrNull(
+          (l) =>
+              l.languageCode == parts[0] && l.countryCode == parts[1],
+        );
+      }
+      locale ??= S.delegate.supportedLocales.firstWhereOrNull(
+        (l) => l.languageCode == parts[0],
+      );
+    }
 
-    await S.load(locale ?? const Locale('en'));
+    // Se não houver idioma no perfil, NÃO chamamos S.load aqui para não sobrescrever o MaterialApp
+    if (locale != null) {
+      debugPrint('Configurando idioma do usuário: $locale');
+      await S.load(locale);
+    }
+
     final userPermissions =
         await _tbClient.getUserPermissionsService().getAllowedPermissions();
     state = state.copyWith(

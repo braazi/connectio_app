@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:thingsboard_app/modules/main/model/navigation_item_data.dart';
 import 'package:thingsboard_app/modules/notification/widgets/notification_icon.dart';
+import 'package:thingsboard_app/generated/l10n.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 
 class NavigationHelper {
@@ -23,23 +24,23 @@ static String getLabel(PageLayout pageLayout) {
 
   switch (pageLayout.id) {
     case Pages.home:
-      return 'Home';
+      return S.current.home;
     case Pages.alarms:
-      return 'Alarms';
+      return S.current.alarms(2);
     case Pages.devices:
-      return 'Devices';
+      return S.current.devices(2);
     case Pages.customers:
-      return 'Customers';
+      return S.current.customers;
     case Pages.assets:
-      return 'Assets';
+      return S.current.assets;
     case Pages.audit_logs:
-      return 'Audit Logs';
+      return S.current.auditLogs;
     case Pages.notifications:
-      return 'Notifications';
+      return S.current.notifications(2);
     case Pages.device_list:
-      return 'Device List';
+      return S.current.deviceList;
     case Pages.dashboards:
-      return 'Dashboards';
+      return S.current.dashboards(2);
     case Pages.undefined:
     case null:
       return pageLayout.label ?? '-';

@@ -12,6 +12,7 @@ import 'package:thingsboard_app/core/logger/tb_logger.dart';
 import 'package:thingsboard_app/modules/main/model/navigation_item_data.dart';
 import 'package:thingsboard_app/modules/main/model/navigation_state.dart';
 import 'package:thingsboard_app/modules/main/providers/navigation_helper.dart';
+import 'package:thingsboard_app/generated/l10n.dart';
 import 'package:thingsboard_app/thingsboard_client.dart';
 
 part 'navigation_provider.g.dart';
@@ -24,31 +25,37 @@ class Navigation extends _$Navigation {
   Size _deviceScreenSize = Size.zero;
   final _logger = TbLogger();
   List<NavigationItemData> _allPages = [];
-  late final StreamSubscription<NativeDeviceOrientation>
-  _orientationSubscription;
-  late final ProviderSubscription<LoginState> _loginSub;
+  StreamSubscription<NativeDeviceOrientation>? _orientationSubscription;
+
   @override
   NavigationState build() {
-    final login = ref.read(loginProvider);
+    final login = ref.watch(loginProvider);
 
-    ref.listen(loginProvider, (prev, next) {
-      onLoggedIn();
-    });
+    if (_orientationSubscription == null) {
+      _orientationSubscription = NativeDeviceOrientationCommunicator()
+          .onOrientationChanged()
+          .listen((e) async {
+            await Future.delayed(const Duration(seconds: 1));
+            _updateScreenSize();
+            updatePages();
+          });
 
-    _orientationSubscription = NativeDeviceOrientationCommunicator()
-        .onOrientationChanged()
-        .listen((e) async {
-          await Future.delayed(const Duration(seconds: 1));
-          _updateScreenSize();
-          updatePages();
-        });
-    ref.onDispose(() {
-      _orientationSubscription.cancel();
-      _loginSub.close();
-    });
+      ref.onDispose(() {
+        _orientationSubscription?.cancel();
+        _orientationSubscription = null;
+      });
+    }
+
     if (!login.isUserLoaded || login.mobileLoginInfo == null) {
       return const NavigationState(bottomBarPages: [], morePages: []);
     }
+
+    // Initialize/Update layout cache
+    _cachePageLayouts(
+      login.mobileLoginInfo!.pages,
+      authority: login.userScope!,
+    );
+
     return _getPages(_pagesLayout);
   }
 
@@ -96,11 +103,14 @@ class Navigation extends _$Navigation {
   }
 
   NavigationState _getPages(List<PageLayout> layouts) {
+    // S.current depends on the current locale. By calling it here, we ensure
+    // that if the locale changes and this method is re-run (due to ref.watch(loginProvider)),
+    // the labels will be updated.
     _allPages =
         layouts
             .map(
               (pageLayout) => NavigationItemData(
-                title: NavigationHelper.getLabel(pageLayout),
+                title: () => NavigationHelper.getLabel(pageLayout),
                 icon: NavigationHelper.getIcon(pageLayout),
                 path: NavigationHelper.getPath(pageLayout),
                 id: pageLayout.id?.name,
@@ -116,13 +126,13 @@ class Navigation extends _$Navigation {
             null;
     final more =
         shouldAddProfile
-            ? const NavigationItemData(
-              title: 'Profile',
+            ? NavigationItemData(
+              title: () => S.current.profile,
               icon: Icons.person,
               path: fullScreenProfile,
             )
-            : const NavigationItemData(
-              title: 'More',
+            : NavigationItemData(
+              title: () => S.current.more,
               icon: Icons.menu_outlined,
               path: '/more',
             );

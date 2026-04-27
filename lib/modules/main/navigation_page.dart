@@ -62,8 +62,8 @@ class NavigationPage extends HookConsumerWidget {
           final confirm = await getIt<IOverlayService>().showConfirmDialog(
             content:
                 (_) => DialogContent(
-                  title: 'Are you sure you want te exit?',
-                  message: 'Confirm to close the app',
+                  title: S.of(context).areYouSureYouWantToExit,
+                  message: S.of(context).confirmToCloseTheApp,
                   cancel: S.of(context).cancel,
                 ),
           );
@@ -102,7 +102,7 @@ class NavigationPage extends HookConsumerWidget {
                       items
                           .map(
                             (item) => TbMainNavigationItem(
-                              title: item.title,
+                              title: item.title(),
                               icon: item.icon,
                               path: item.path,
                               id: item.id,

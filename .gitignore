@@ -52,3 +52,10 @@ GoogleService-Info.plist
 # FVM Version Cache
 .fvm/
 WARP.md
+# Local/private configuration
+firebase.json
+android/app/google-services.json
+lib/firebase_options.dart
+ios/Runner/GoogleService-Info.plist
+configs.json
+assets/

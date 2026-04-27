@@ -9,7 +9,7 @@ class NavigationItemData {
     this.showNotificationBadge = false,
   });
 
-  final String title;
+  final String Function() title;
   final IconData icon;
   final String path;
   final String? id;
@@ -20,16 +20,12 @@ class NavigationItemData {
       identical(this, other) ||
       other is NavigationItemData &&
           runtimeType == other.runtimeType &&
-          title == other.title &&
-          icon == other.icon &&
           path == other.path &&
           id == other.id &&
           showNotificationBadge == other.showNotificationBadge;
 
   @override
   int get hashCode =>
-      title.hashCode ^
-      icon.hashCode ^
       path.hashCode ^
       id.hashCode ^
       showNotificationBadge.hashCode;

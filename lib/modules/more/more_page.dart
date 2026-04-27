@@ -58,7 +58,7 @@ class MorePage extends HookConsumerWidget {
                                 .map(
                                   (e) => MoreMenuItemWidget(
                                     TbMainNavigationItem(
-                                      title: e.title,
+                                      title: e.title(),
                                       icon: e.icon,
                                       path: e.path,
                                       showAdditionalIcon: e.showNotificationBadge,

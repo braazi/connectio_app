@@ -29,8 +29,7 @@ class MorePageFooter extends ConsumerWidget {
   Widget appVersionInfo() {
     final ver = getIt<IDeviceInfoService>().getBuildVersion();
     if (EnvironmentVariables.showAppVersion) {
-      // translate-me-ignore-next-line
-      return Text('version: $ver',  style: TbTextStyles.bodyMedium);
+      return Text('Versão: $ver',  style: TbTextStyles.bodyMedium);
     }
     return const SizedBox();
   }

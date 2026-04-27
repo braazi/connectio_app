@@ -23,7 +23,6 @@ class TbMainNavigationItem extends Equatable {
 
   @override
   List<Object?> get props => [
-        title,
         icon,
         path,
         id,

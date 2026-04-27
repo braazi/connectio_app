@@ -16,9 +16,9 @@ abstract class Utils {
   static const _imageBase64UrlPrefix = 'data:image/';
   static final _imagesUrlRegexp = RegExp('/api/images/(tenant|system)/(.*)');
   static final _noImageDataUri =
-      UriData.parse(
-        'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
-      ).contentAsBytes();
+      base64Decode(
+        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+      );
 
   static const _authScheme = 'Bearer ';
   static const _authHeaderName = 'X-Authorization';

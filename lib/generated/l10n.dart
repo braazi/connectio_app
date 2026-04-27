@@ -54,9 +54,9 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `ThingsBoard`
+  /// `Connect IO`
   String get appTitle {
-    return Intl.message('ThingsBoard', name: 'appTitle', desc: '', args: []);
+    return Intl.message('Connect IO', name: 'appTitle', desc: '', args: []);
   }
 
   /// `Home`
@@ -106,10 +106,10 @@ class S {
     return Intl.message('Log In', name: 'login', desc: '', args: []);
   }
 
-  /// `ThingsBoard Logo`
+  /// `Connect IO Logo`
   String get logoDefaultValue {
     return Intl.message(
-      'ThingsBoard Logo',
+      'Connect IO Logo',
       name: 'logoDefaultValue',
       desc: '',
       args: [],
@@ -3350,10 +3350,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
-      Locale.fromSubtags(languageCode: 'ar'),
-      Locale.fromSubtags(languageCode: 'zh'),
-      Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
-      Locale.fromSubtags(languageCode: 'zh', countryCode: 'TW'),
+      Locale.fromSubtags(languageCode: 'pt'),
+      Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
     ];
   }
 
