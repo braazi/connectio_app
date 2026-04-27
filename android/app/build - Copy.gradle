@@ -7,13 +7,6 @@ plugins {
     id 'dev.flutter.flutter-gradle-plugin'
 }
 
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -76,14 +69,6 @@ namespace "cloud.braazi.connectio"
     redirectURLScheme: redirectURLScheme
 ]
     }
-signingConfigs {
-    release {
-        keyAlias keystoreProperties['keyAlias']
-        keyPassword keystoreProperties['keyPassword']
-        storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-        storePassword keystoreProperties['storePassword']
-    }
-}
 compileOptions {
         coreLibraryDesugaringEnabled true 
         sourceCompatibility JavaVersion.VERSION_17
@@ -96,7 +81,7 @@ compileOptions {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
             // Custom proguard rules
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
@@ -123,5 +108,4 @@ compileOptions {
 flutter {
     source '../..'
 }
-//android.buildTypes.release.ndk.debugSymbolLevel = 'SYMBOL_TABLE'
 android.buildTypes.release.ndk.debugSymbolLevel = 'FULL'
