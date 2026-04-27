@@ -51,7 +51,7 @@ def redirectURLHost = getDartDefineValue('registrationRedirectUrlHost') ?: 'conn
 def redirectURLScheme = getDartDefineValue('registrationRedirectUrlScheme') ?: 'tbscheme'
 
 android {
-namespace "cloud.braazi.connectio"
+namespace "org.thingsboard.app"
     ndkVersion "29.0.13113456 rc1"
     compileSdkVersion 35
 
