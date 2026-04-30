@@ -1,0 +1,57 @@
+name: build-release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Set up Java 17 (matches the repo’s Android build config)
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      # Install Flutter (pin to the version in .fvmrc manually, or parse it in a step)
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.0"
+
+      - name: Build AAB
+        run: |
+          flutter pub get
+          flutter build appbundle --no-tree-shake-icons --dart-define-from-file configs.json
+
+      # Upload artifact for inspection
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-aab
+          path: build/app/outputs/bundle/**/**/*.aab
+
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.0"
+
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+          cd ios && pod install && cd ..
+
+      - name: Build IPA
+        run: |
+          flutter pub get
+          flutter build ipa --no-tree-shake-icons --dart-define-from-file configs.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: build/ios/ipa/*.ipa
+

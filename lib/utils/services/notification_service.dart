@@ -103,7 +103,12 @@ class NotificationService {
     await _foregroundMessageSubscription?.cancel();
     await _onMessageOpenedAppSubscription?.cancel();
     await _onTokenRefreshSubscription?.cancel();
-    await _messaging.deleteToken();
+    try {
+      await _messaging.deleteToken();
+    } catch (e) {
+      // APNS token may not be set (e.g. iOS simulator) — non-fatal, continue logout
+      getIt<TbLogger>().debug('NotificationService::logout() deleteToken error: $e');
+    }
     await _messaging.setAutoInitEnabled(false);
     await flutterLocalNotificationsPlugin.cancelAll();
     await _localService.clearNotificationBadgeCount();

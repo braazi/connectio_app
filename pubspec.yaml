@@ -12,7 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  thingsboard_client: ^4.1.0
+  thingsboard_pe_client: ^4.1.0
+  recaptcha_enterprise_flutter: ^18.8.2
   intl: ^0.19.0
   flutter_secure_storage: ^9.0.0
   flutter_speed_dial: ^7.0.0
